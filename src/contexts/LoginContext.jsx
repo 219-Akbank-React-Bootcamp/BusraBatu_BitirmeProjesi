@@ -18,6 +18,8 @@ export const LoginProvider = ({ children }) => {
   const [state, setState] = useState(initialState)
 
   useEffect(() => {
+    //bu kisim login methodunda bearer + token dendiginde calisti useeffeectsiz 7.hafta 2.ders dk52.40
+    //bu haliyel list ekleme board ekelem yapilabilir???
     instance.interceptors.request.use((config) => {
       const _config = { ...config }
       _config.headers = {
@@ -27,7 +29,8 @@ export const LoginProvider = ({ children }) => {
       return _config
     })
 
-    /* instance.interceptors.response.use(
+    /*bu kisim response da status code un gecerli olmadigi durumlar icin gecerli 
+    instance.interceptors.response.use(
       (response) => {
         return response
       },

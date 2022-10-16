@@ -10,7 +10,9 @@ const Home = (props) => {
   };
   const handleAddBoard=()=> {
    props.onAddBoard({title:'Untitled board'}) 
-   props.onBoards().map((item)=>{setBoards(item)})
+   props.onBoards().map((item)=>{setBoards(item)})//belki useeffect icine almak gerekebilir
+   //context kullansaydik contexte yer almasi gerekirdi
+   //boards.list().then(({ data }))=>setBoards(data))),[]}
   }
   return (
     <Styled>

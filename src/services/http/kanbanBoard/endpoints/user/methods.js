@@ -1,2 +1,2 @@
 import service from '../instance'
-export const get = () =>service.get('/')
+//export const get = () =>service.get('/')
