@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import "./Editable.css";
+import {Styled} from './Editable.styled'
 
 const Editable = (props) => {
   const [showEdit, setShowEdit] = useState(false);
   const [inputValue, setInputValue] = useState("");
   return (
-    <div className="editable">
+    <Styled>
+      
       {showEdit ? (
         <div className="editable-edit">
           <div className="editable-edit-top">
@@ -61,7 +62,9 @@ const Editable = (props) => {
           <p className="add-button-desc"> {props.text}</p>
         </div>
       )}
-    </div>
+    
+    </Styled>
+    
   );
 };
 

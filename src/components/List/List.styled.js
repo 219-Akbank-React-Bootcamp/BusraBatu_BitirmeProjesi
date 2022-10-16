@@ -1,4 +1,6 @@
-.list {
+import styled from 'styled-components'
+
+export const Styled = styled.div`
   min-width: 19rem;
   max-height: 100%;
   display: flex;
@@ -8,7 +10,7 @@
   border-radius: 1rem;
   padding: 1.5rem;
   box-shadow: 1px 1px 1px grey;
-}
+
 .list-top {
   display: flex;
   padding-bottom: 1rem;
@@ -45,3 +47,4 @@
   cursor: pointer;
 }
 
+`

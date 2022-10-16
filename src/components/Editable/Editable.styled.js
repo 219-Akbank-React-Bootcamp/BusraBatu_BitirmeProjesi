@@ -1,4 +1,6 @@
+import styled from 'styled-components'
 
+export const Styled = styled.div`
 .add{
     display: flex;
     font-weight: bold;
@@ -45,4 +47,4 @@ border-radius: 50%;
     margin-top:1rem;
     font-size: 1rem;
     color:#838282;
-}
+}`

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import "./Dropdown.css";
+import { Styled } from "./Dropdown.styled";
 const Dropdown = (props) => {
     const dropdownRef = useRef();
 
@@ -21,13 +21,14 @@ const Dropdown = (props) => {
     });
   
     return (
-      <div
-        style={{position: "absolute",top:"100%",right:"0",}}
-        ref={dropdownRef}
-        className={`dropdown custom-scroll ${props.class ? props.class : ""}`}
-      >
-        {props.children}
-      </div>
+      <Styled> <div
+      style={{position: "absolute",top:"100%",right:"0",}}
+      ref={dropdownRef}
+      className={`dropdown custom-scroll ${props.class ? props.class : ""}`}
+    >
+      {props.children}
+    </div></Styled>
+     
     );
   }
 

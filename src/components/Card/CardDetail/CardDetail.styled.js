@@ -1,4 +1,6 @@
-.cardDetail {
+import styled from 'styled-components'
+
+export const Styled = styled.div`.cardDetail {
   padding: 0 0 2rem 0;
   background-color: #fff;
   display: flex;
@@ -165,4 +167,7 @@ background-color: limegreen;
   border-radius: 2rem;
   border: none;
   color: grey;
-}
+}`
+
+
+

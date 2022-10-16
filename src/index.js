@@ -1,15 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import { LoginProvider } from "./contexts/LoginContext";
 
-import App from './App';
-
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+    //uygulamayi provider ile sarmalamazsak usecontext calismaz
+  <LoginProvider>
+   <App />
+  </LoginProvider>
 );
-
-
-

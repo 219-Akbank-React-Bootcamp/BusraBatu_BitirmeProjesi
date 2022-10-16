@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import "./Board.css";
+
 import List from "../List/List";
 import Editable from "../Editable/Editable";
 import { BoardContext } from "../../contexts/BoardContext";
+import{ Styled} from './Board.styled'
 
 const Board = (props) => {
   const [editTitle, setEditTitle] = useState(false);
@@ -70,66 +71,67 @@ setLists(tempLists);
   };
 
   return (
-    <div className="board">
-      <div className="top-menu">
-        {/* onClick={<Link BoardListPage ></Link>} */}
-        <button className="boards-button">
-          <span className="material-symbols-outlined">assignment</span>
-        </button>
-        {/* board ismi degistirildiktan sonra check button calismiyor */}
-        {editTitle ? (
-          <div className="board-title" onClick={editTitle}>
-            <input
-              onChange={handleChangeTitle}
-              className="board-title-editable"
-              type="text"
-              name="boards"
-            />
-            <span
-              onClick={() => {
-                setEditTitle(false);
-              }}
-              className="material-symbols-outlined icon"
-            >
-              check
-            </span>
-          </div>
-        ) : (
-          <div
+    <Styled> 
+    <div className="top-menu">
+      {/* onClick={<Link BoardListPage ></Link>} */}
+      <button className="boards-button">
+        <span className="material-symbols-outlined">assignment</span>
+      </button>
+      {/* board ismi degistirildiktan sonra check button calismiyor */}
+      {editTitle ? (
+        <div className="board-title" onClick={editTitle}>
+          <input
+            onChange={handleChangeTitle}
+            className="board-title-editable"
+            type="text"
+            name="boards"
+          />
+          <span
             onClick={() => {
-              setEditTitle(true);
+              setEditTitle(false);
             }}
-            className="board-title-visibility"
+            className="material-symbols-outlined icon"
           >
-            <span className="material-symbols-outlined">visibility</span>
-            Untitled Board
-          </div>
-        )}
-        {/* Kisi listesine gidilecek */}
-        <button className="settings-button">
-          <span className="material-symbols-outlined">settings</span>
-        </button>
-      </div>
-      <div className="workspace">
-        <div className="lists">
-          {lists.map((item)=>(< List key={item.id}  list={item} removeList={removeList} addCard={addCard}
-          removeCard={removeCard}/>))}
+            check
+          </span>
+        </div>
+      ) : (
+        <div
+          onClick={() => {
+            setEditTitle(true);
+          }}
+          className="board-title-visibility"
+        >
+          <span className="material-symbols-outlined">visibility</span>
+          Untitled Board
+        </div>
+      )}
+      {/* Kisi listesine gidilecek */}
+      <button className="settings-button">
+        <span className="material-symbols-outlined">settings</span>
+      </button>
+    </div>
+    <div className="workspace">
+      <div className="lists">
+        {lists.map((item)=>(< List key={item.id}  list={item} removeList={removeList} addCard={addCard}
+        removeCard={removeCard}/>))}
 
-          
-          <div className="add-list">
-            <Editable
-            onClick={(value)=> addList(value)}
-              displayClass="add-list-field"
-              text="Add a list"
-              placeholder="List title"
-              color="#fff"
-              backgroundColor="red"
-             
-            />
-          </div>
+        
+        <div className="add-list">
+          <Editable
+          onClick={(value)=> addList(value)}
+            displayClass="add-list-field"
+            text="Add a list"
+            placeholder="List title"
+            color="#fff"
+            backgroundColor="red"
+           
+          />
         </div>
       </div>
     </div>
+ </Styled>
+   
   );
 };
 

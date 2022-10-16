@@ -1,5 +1,5 @@
 import React from "react";
-import "./Label.css";
+import {Styled} from './Label.styled'
 
 const Label = (props) => {
   let color = "";
@@ -21,12 +21,13 @@ const Label = (props) => {
       break;
   }
   return (
-    <div className="priorty-color">
-      <span className="material-symbols-outlined" style={{ backgroundColor: { color } }}>
-        label
-      </span>
-     
-    </div>
+    <Styled> <div className="priorty-color">
+    <span className="material-symbols-outlined" style={{ backgroundColor: { color } }}>
+      label
+    </span>
+   
+  </div></Styled>
+   
   );
 };
 

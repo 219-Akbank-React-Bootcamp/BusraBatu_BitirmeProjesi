@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import Label from "../Label/Label";
-import "./Card.css";
+
 import CardDetail from "./CardDetail/CardDetail";
+import { Styled } from "./Card.styled";
 
 const Card = (props) => {
   const [showModal, setShowModal] = useState(false);
   return (
-    <>
+    <Styled>
+      <>
       {showModal && <CardDetail onClose={() => setShowModal(false)} />}
       <div className="card" onClick={() => setShowModal(true)}>
         <div className="card-top">
@@ -43,6 +45,8 @@ const Card = (props) => {
         </div>
       </div>
     </>
+    </Styled>
+    
   );
 };
 

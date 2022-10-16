@@ -1,4 +1,6 @@
-.modal {
+import styled from 'styled-components'
+
+export const Styled = styled.div`.modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -15,4 +17,5 @@ border-radius: .2rem;
 max-height: 95vh;
 overflow-y:auto ;
 
-}
+}`
+
