@@ -1,32 +1,65 @@
-import React,{useState, useEffect} from 'react'
-import Board from '../components/Board/'
-//bu sayfa icin todoapp contexte bak
-const BoardContext = (props) => {
-  //bir contexte olmasi gerekenler
-  //export const initialState
-  //export const...context=create context(dispatches:{addlist?}, state:initialState)
-  //export const .....Provider=({children})=>{
-  //  const [state, setState]= useState(initialState)
-  //useeffect kullanabiliriz listler icin 7.hafta 2.ders 1saat 20.dakika
-  //}
-    const initialData={id: 0,
-    title: "",
-    ownerId: 0,}
-    const [board,setBoard]=useState(initialData)
-    useEffect(() => {
-        fetchData().then(data=>setBoard(data))
-      },[board])
-      //boards.list().then(({ data }))=>setBoards(data))),[]}
-      //dispatches.addlist=(list)=>{
-      //  ...prev, lists:[...prev.lists, list]
-     // }
+import React, { useState, useEffect, createContext, useContext } from "react";
+import Board from "../components/Board/";
+import { board } from "../services/http/kanbanBoard/endpoints/board";
+import instance from '../services/http/kanbanBoard/endpoints/instance'
+import { useLoginContext } from "./LoginContext";
+//useeffect kullanabiliriz listler icin 7.hafta 2.ders 1saat 20.dakika
 
-  return (<BoardContext.Provider
-    //value={{state, dispatches}}
-  > {children} <Board/></BoardContext.Provider>
-  
-  )
-}
+export const initialState = { boards: [] };
+// export const useGetToken=()=>{
+//   const { state } = useLoginContext();
+//   useEffect(() =>{
+//     instance.interceptors.request.use((config) => {
+//         const _config = { ...config }
+//         _config.headers = {
+//           ...config.headers,
+//           authorization: 'Bearer ' + state.token,
+//         }
+//         return _config
+//       })},[state.token])
 
-export default BoardContext
-//custom hook da konabailir
+//       console.log('board context useeffect token'+ state.token)
+// }
+export const BoardContext = createContext({
+  dispatches: {},
+  state: initialState,
+});
+
+
+export const BoardProvider = ({ children }) => {
+
+  const [state, setState] = useState(initialState);
+  const dispatches={}
+ 
+  // useEffect(() => {
+  //   board.get().then(({ data }) => {
+  //     setState((prev) => ({ ...prev, boards: data }));
+  //   });
+  // }, []);
+ 
+
+  dispatches.addBoard=(board)=>{
+    setState((prev)=>({...prev, 
+      boards:[...prev.boards, board
+    ]}))
+    
+  }
+  dispatches.updateBoard=(id, board)=>{
+    setState(prev=>({
+      ...prev,
+      boards: prev.boards.map(item=>({
+          ...item,
+          title : (id===item.id) ? board.title : item.title
+      }))
+  }))
+
+  }
+  return (
+    <BoardContext.Provider value={{ state, dispatches, }}>
+      {children}
+    </BoardContext.Provider>
+  );
+};
+export const useBoardContext = () => {
+  return useContext(BoardContext);
+};

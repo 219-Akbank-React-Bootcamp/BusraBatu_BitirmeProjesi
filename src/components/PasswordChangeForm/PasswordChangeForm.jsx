@@ -24,14 +24,7 @@ const PasswordChangeForm = (props) => {
 
   return (
     <Styled>
-      <Link to="/">
-        <span
-          className="material-symbols-outlined"
-          style={{ color: "#4072FD", position: "absolute", margin: "10px" }}
-        >
-          arrow_back
-        </span>
-      </Link>
+     
       <FormCard title="Change Password">
         <Input
           onChange={handleChange}
@@ -71,7 +64,12 @@ const PasswordChangeForm = (props) => {
           style={{ marginBottom: "15px" }}
         />
         <Button onClick={handleSubmit}>Change Password</Button>
-        {formValues.newPassword === formValues.oldPassword &&
+        <Link className="link" to="/login">
+        <Button>Back to Login Page</Button>
+      </Link>
+       
+      
+        {/* {formValues.newPassword === formValues.oldPassword &&
         formValues.newPassword !== "" ? (
           <p className="register-links">Eski parolayla aynı olamaz. </p>
         ) : (
@@ -82,7 +80,7 @@ const PasswordChangeForm = (props) => {
           <p className="register-links">Parolalar eşleşmemektedir. </p>
         ) : (
           ""
-        )}
+        )} */}
       </FormCard>
     </Styled>
   );

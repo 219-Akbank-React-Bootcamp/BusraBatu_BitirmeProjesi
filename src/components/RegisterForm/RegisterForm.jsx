@@ -61,7 +61,7 @@ const RegisterForm = (props) => {
 
         <Button onClick={handleSubmit}>Register now</Button>
         <p className="register-links">
-          Already have an account{" "}
+          Already have an account
           <Link className="link" to="/login">
             Sign in!
           </Link>

@@ -18,8 +18,8 @@ export const Styled = styled.div`
     color: #fff;
     background-color: #111827;
   }
-  .boards {
-    display: flex;
+  .bottom {
+    display: block;
     justify-content: center;
     text-align: center;
     
@@ -31,6 +31,12 @@ export const Styled = styled.div`
     color:#111827;
     padding: 3rem;
   }
+  .boards{
+    display: flex;
+    justify-content: center;
+  
+  }
+ 
   .add-board-button {
     width: 12rem;
     height: 12rem;
@@ -42,7 +48,11 @@ export const Styled = styled.div`
     font-size: 1rem;
     box-shadow: 0px 0px 2px 0px rgba(17,24,39,0.56);
     cursor: pointer;
+    margin-right: 3rem;
+    text-decoration:none;
+   
   }
+ 
   .icon {
     width: 3rem;
     height: 3rem;
@@ -52,6 +62,11 @@ export const Styled = styled.div`
     border-radius: 50%;
     text-align: center;
     margin: 2rem;
+   
+  }
+  .left{
+    background-color: #fff;
+    color: #8f8f8f;
    
   }
 `;
