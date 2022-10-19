@@ -1,42 +1,58 @@
 import React, { useState } from "react";
-
 import List from "../List/List";
-import Editable from "../Editable/Editable";
+import AddList from "../AddList";
 import { useBoardContext } from "../../contexts/BoardContext";
 import { Styled } from "./Board.styled";
 import { Link } from "react-router-dom";
 
 const Board = (props) => {
   const [isEditTitle, setIsEditTitle] = useState(false);
-  const [title, setTitle] = useState("");
+
+  const boardsContext = useBoardContext();
+  let initialBoard={id:0, title:'',}
+  initialBoard={id:boardsContext.selectedBoard.id,
+  title:boardsContext.selectedBoard.title,};
   
-  const [board, setBoard]= useState('');
-  const {state, dispatches,}= useBoardContext();
+  const [board, setBoard]=useState(initialBoard)
+  // conts [list, setList]= useState({
+  //   id: "",
+  //   order: "",
+  //   title: "",
+  //   boardId: "",
+  //   cards: [],
+  // })
 
-  const handleChangeTitle = (e) => {
-    setTitle (()=>e.target.value)
-    console.log(title);
-  };
-  const handleSubmitTitle = () => {
+  const handleSubmit = () => {
     setIsEditTitle(false);
-    props.onEditBoardTitle( )
- 
+    props.onEditBoardTitle(board.title, board.id );
+   boardsContext.dispatches.updateBoard(board.id, board);
+    
 
   };
-  const [lists, setLists] = useState([
-    { id: "", title: "", ownerId: "", updatedAt: "", createdAt: "" },
-  ]);
-    const addList = (title) => {
-    setLists([
-      ...lists,
-      {
-        id: "",
-        order: "",
-        title: "",
-        boardId: "",
-        cards: [],
-      },
-    ]);
+
+  const handleChange = (e) => {
+    setBoard((prev)=>({...prev, title:e.target.value}))
+  };
+
+  // const [lists, setLists] = useState([
+  //   { id: "", title: "", ownerId: "", updatedAt: "", createdAt: "" },
+  // ]);
+  const handleAddList = (title) => {
+   
+
+   props.onAddList({title,boardId:board.id})
+    // setLists([
+    //   ...lists,
+    //   {
+    //     id: "",
+    //     order: "",
+    //     title: "",
+    //     boardId: "",
+    //     cards: [],
+    //   },
+    // ]);
+    
+   
   };
   
 
@@ -51,14 +67,18 @@ const Board = (props) => {
         {isEditTitle ? (
           <div className="board-title">
             <input
-              onChange={handleChangeTitle}
+              name="title"
+              onChange={handleChange}
               className="board-title-editable"
               type="text"
-              name="boards"
+             
             />
             <span
-              onClick={handleSubmitTitle}
-              className="material-symbols-outlined icon"> check</span>
+              onClick={handleSubmit}
+              className="material-symbols-outlined icon"
+            >
+              check
+            </span>
           </div>
         ) : (
           <div
@@ -68,7 +88,7 @@ const Board = (props) => {
             className="board-title-visibility"
           >
             <span className="material-symbols-outlined">visibility</span>
-            Untitled Board
+            {board.title}
           </div>
         )}
         {/* Kisi listesine gidilecek */}
@@ -78,19 +98,12 @@ const Board = (props) => {
       </div>
       <div className="workspace">
         <div className="lists">
-          {/* {lists.map((item) => (
-            <List
-              key={item.id}
-              list={item}
-              removeList={removeList}
-              addCard={addCard}
-              removeCard={removeCard}
-            />
-          ))} */}
+          
+         <List/>
 
           <div className="add-list">
-            <Editable
-              onClick={(value) => addList(value)}
+            <AddList
+              onClick={(value) => handleAddList(value)}
               displayClass="add-list-field"
               text="Add a list"
               placeholder="List title"

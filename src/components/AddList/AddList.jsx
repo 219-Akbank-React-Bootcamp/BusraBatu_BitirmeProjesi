@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import {Styled} from './Editable.styled'
+import {Styled} from './AddList.styled'
 
-const Editable = (props) => {
+const AddList = (props) => {
   const [showEdit, setShowEdit] = useState(false);
   const [inputValue, setInputValue] = useState("");
   return (
     <Styled>
-      
       {showEdit ? (
         <div className="editable-edit">
           <div className="editable-edit-top">
@@ -68,4 +67,4 @@ const Editable = (props) => {
   );
 };
 
-export default Editable;
+export default AddList;

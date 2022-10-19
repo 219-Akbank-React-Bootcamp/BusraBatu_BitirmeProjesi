@@ -27,6 +27,8 @@ export const LoginProvider = ({ children }) => {
         authorization: 'Bearer ' + state.token,
       }
       return _config
+    },(error)=>{
+      Promise.reject(error)
     })
 
     /*bu kisim response da status code un gecerli olmadigi durumlar icin gecerli 

@@ -1,1 +1,1 @@
-export * as label from './methods'
+export * as list from './methods'

@@ -12,10 +12,11 @@ const Home = (props) => {
     props.onLogout();
   };
   const handleAddBoard = () => {
-    boardsContext.dispatches.addBoard({ title: "Untitled Board" });
+   
     props.onAddBoard({ title: "Untitled Board" })
-    console.log('handleaddboar', boardsContext.state);
+    
   };
+
   return (
     <Styled>
       <div className="top-menu">
@@ -30,12 +31,12 @@ const Home = (props) => {
           <div className='boards'>
          
           {boardsContext.state.boards.length > 0
-            ?(boardsContext.state.boards.map((board, index) => {
-                return (<Link className="add-board-button" to='/board'>  <div key={index} >
+            ?(boardsContext.state.boards.map((board) => {
+                return (<Link key={board.id} className="add-board-button" to='/board'>  <div onClick={()=>{boardsContext.selectedBoard={title:board.title, id:board.id}}}  >
                 <span className="material-symbols-outlined icon left">
                   view_kanban
                 </span>
-                <p>{board.title}</p>
+                <p>{board.id}</p>
               </div></Link>
                 
                 );
